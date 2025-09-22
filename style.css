@@ -4,12 +4,12 @@ body {
 
 .message-container {
   position: absolute;
-  top: 90vh;      /* Move container down to 90% viewport height */
+  top: 90vh; /* Near bottom of the viewport */
   left: 0;
   width: 100%;
   text-align: center;
-  pointer-events: none; /* Allow clicks through except on children */
-  transform: translateY(-50%); /* Center vertically relative to 90vh */
+  pointer-events: none;
+  transform: translateY(-50%);
 }
 
 #customMessageInput {
@@ -20,8 +20,8 @@ body {
   outline: none;
   width: 60%;
   max-width: 400px;
-  pointer-events: auto; /* Enable input */
-  margin-top: 0;        /* Remove previous top margin */
+  pointer-events: auto;
+  margin-top: 0;
 }
 
 #setMessageBtn {
@@ -33,15 +33,16 @@ body {
   border: 2px solid #272761;
   color: #383878;
   cursor: pointer;
-  pointer-events: auto; /* Enable button click */
+  pointer-events: auto;
 }
 
 #setMessageBtn:hover {
   background-color: #fff;
 }
+
 #customMessageDisplay {
   position: absolute;
-  top: 25vh; /* Display message at 25% of screen height */
+  top: 25vh; /* Message stays near the top-middle */
   width: 100%;
   text-align: center;
   font-size: 30px;
@@ -342,6 +343,7 @@ body {
   }
   
 }
+
 
 
 
