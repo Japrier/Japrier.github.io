@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
   cake.addEventListener("click", function (event) {
     const rect = cake.getBoundingClientRect();
     const left = event.clientX - rect.left;
-    const top = event.clientY - rect.top;
+    const top = event.clientY - rect.top-55;
     addCandle(left, top);
   });
 
@@ -93,3 +93,4 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCandleCount();
   };
 });
+
