@@ -10,6 +10,15 @@
     />
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    
+  <div class="flavor-dropdown" style="position: fixed; top: 58px; right: 16px; z-index: 1000;">
+    <label for="flavorSelect">Flavor:</label>
+    <select id="flavorSelect">
+      <option value="chocolate">Chocolate</option>
+      <option value="vanilla">Vanilla</option>
+    </select>
+  </div>
+
     <style>
       body {
         margin: 0;
@@ -41,6 +50,11 @@
     <div class="candle-count-display">
       candles on cake: <span id="candleCount">0</span>
     </div>
+      <div class="message-container">
+  <input type="text" id="customMessageInput" placeholder="Enter your message..." />
+  <button id="setMessageBtn">Set Message</button>
+  <div id="customMessageDisplay"></div>
+</div>
     <div class="cake">
       <div class="plate"></div>
       <div class="layer layer-bottom"></div>
@@ -51,6 +65,7 @@
       <div class="drip drip2"></div>
       <div class="drip drip3"></div>
     </div>
+
     <div class="ui-controls">
       <button id="shareBtn">share cake</button>
       <button id="resetLinkBtn">reset candles</button>
@@ -140,5 +155,3 @@
     </script>
   </body>
 </html>
-
-
