@@ -3,20 +3,18 @@ body {
 }
 
 .candle-count-display {
-  text-align: center;
-  margin-top: 150px;
-  margin-bottom: 20px;
+  position: fixed;
+  top: 16px;
+  left: 16px;
   font-family: 'Arial', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   color: #383878;
   background-color: #fff7f1;
-  padding: 10px;
+  padding: 10px 14px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
   border: 2px solid #272761;
+  z-index: 1000;
 }
 
 .candle-count-display span {
@@ -185,3 +183,4 @@ body {
     box-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 0 0 20px rgba(255, 165, 0, 0.5), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 80px rgba(255, 165, 0, 0.5);
   }
 }
+
