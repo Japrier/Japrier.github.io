@@ -2,24 +2,110 @@ body {
   background-color: #fff7f1;
 }
 
+.message-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  pointer-events: none; /* Allows clicks through except on children */
+}
+
+#customMessageInput {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #272761;
+  outline: none;
+  width: 60%;
+  max-width: 400px;
+  pointer-events: auto; /* Enable input */
+  margin-top: 5vh;     /* Push input to 10% from top */
+}
+
+#setMessageBtn {
+  padding: 8px 16px;
+  margin-left: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: #fff7f1;
+  border: 2px solid #272761;
+  color: #383878;
+  cursor: pointer;
+  pointer-events: auto; /* Enable button click */
+}
+
+#setMessageBtn:hover {
+  background-color: #fff;
+}
+
+#customMessageDisplay {
+  position: absolute;
+  top: 25vh; /* Display message at 25% of screen height */
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #383878;
+  pointer-events: none;
+}
+
+#flavorSelect {
+  
+  appearance: none;
+  background-color: #fff7f1;  /* Match your UI (e.g., soft pink/lavender) */
+  color: #4b2354;              /* Deep purple text (adjust as needed) */
+  border: 2px solid #4b2354;   /* Border to match buttons/icing */
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional hover/focus effects */
+#flavorSelect:hover,
+#flavorSelect:focus {
+  background-color: #f1d8ff;
+  border-color: #ba7cf4;
+}
+
+/* Remove arrow and add custom one (optional for advanced styling) */
+#flavorSelect {
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234b2354' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 30px;
+}
+
 .candle-count-display {
   position: fixed;
   top: 16px;
   left: 16px;
   font-family: 'Arial', sans-serif;
-  font-size: 18px;
+  font-size: clamp(14px, 4vw, 18px); /* Responsive font size */
   color: #383878;
   background-color: #fff7f1;
-  padding: 10px 14px;
+  padding: 6px 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border: 2px solid #272761;
+  max-width: 50vw;              /* Prevents it from overflowing */
+  white-space: nowrap;          /* Keeps it on one line */
+  overflow: hidden;
+  text-overflow: ellipsis;
   z-index: 1000;
 }
 
 .candle-count-display span {
   font-weight: bold;
   color: orange;
+  top: 10px;
+  left: 10px;
 }
 
 .cake {
@@ -53,8 +139,30 @@ body {
   width: 250px;
   height: 100px;
   border-radius: 50%;
-  background-color: #272761;
-  box-shadow: 0 2px 0px #383878, 0 4px 0px #040433, 0 6px 0px #030423, 0 8px 0px #020423, 0 10px 0px #010413, 0 12px 0px #1a1a6e, 0 14px 0px #181865, 0 16px 0px #16165c, 0 18px 0px #141453, 0 20px 0px #12124a, 0 22px 0px #101041, 0 24px 0px #0e0e38, 0 26px 0px #0c0c2f, 0 28px 0px #0a0a26, 0 30px 0px #08081d;
+  background-color: #553c13;
+  box-shadow: 0 2px 0px #684b26, 0 4px 0px #4a320f, 0 6px 0px #4a320f, 0 8px 0px #49310f,
+              0 10px 0px #49310e, 0 12px 0px #482f0e, 0 14px 0px #472e0e, 0 16px 0px #462d0e,
+              0 18px 0px #452c0d, 0 20px 0px #442b0d, 0 22px 0px #432a0d, 0 24px 0px #42290c,
+              0 26px 0px #41280c, 0 28px 0px #40270c, 0 30px 0px #3f260c;
+}
+.cake.vanilla .layer {
+    background-color: #f0e4d0;
+  box-shadow:
+    0 2px 0px #f2e8d8,
+    0 4px 0px #ddccb2,
+    0 6px 0px #ddccb2,
+    0 8px 0px #dbcaaf,
+    0 10px 0px #dac9ad,
+    0 12px 0px #d8c7aa,
+    0 14px 0px #d7c5a8,
+    0 16px 0px #d5c3a5,
+    0 18px 0px #d3c1a3,
+    0 20px 0px #d2bfa0,
+    0 22px 0px #d0bd9e,
+    0 24px 0px #cebb9b,
+    0 26px 0px #cdb998,
+    0 28px 0px #cbb795,
+    0 30px 0px #c9b592;;
 }
 
 .layer-top {
@@ -72,22 +180,53 @@ body {
 .icing {
   top: 2px;
   left: 5px;
-  background-color: #abc9de;
+  background-color: #3b2a14; /* chocolate frosting base */
   width: 240px;
   height: 90px;
   border-radius: 50%;
+  position: relative;
 }
-.icing:before {
+
+.icing::before {
   content: "";
   position: absolute;
   top: 4px;
   right: 5px;
   bottom: 6px;
   left: 5px;
-  background-color: #B6D0E2;
-  box-shadow: 0 0 4px #cce1f0, 0 0 4px #cce1f0, 0 0 4px #cce1f0;
+  background-color: #4b3610; /* darker chocolate */
+  box-shadow:
+    0 0 4px #4d3a11,
+    0 0 4px #4d3a11,
+    0 0 4px #4d3a11;
   border-radius: 50%;
   z-index: 1;
+}
+
+/* When vanilla cake is selected, switch to chocolate frosting */
+.cake.vanilla .icing {
+  background-color: #3b2a14; /* chocolate frosting */
+}
+
+.cake.vanilla .icing::before {
+  background-color: #4b3610; /* darker chocolate */
+  box-shadow:
+    0 0 4px #4d3a11,
+    0 0 4px #4d3a11,
+    0 0 4px #4d3a11;
+}
+
+/* When chocolate cake is selected (no vanilla class), use vanilla frosting */
+.cake:not(.vanilla) .icing {
+  background-color: #f0e4d0; /* vanilla frosting */
+}
+
+.cake:not(.vanilla) .icing::before {
+  background-color: #f4e9d9;
+  box-shadow:
+    0 0 4px #f6ebdc,
+    0 0 4px #f6ebdc,
+    0 0 4px #f6ebdc;
 }
 
 .drip {
@@ -96,7 +235,7 @@ body {
   height: 60px;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-  background-color: #abc9de; 
+  background-color: #f0e4d0; 
 }
 
 .drip1 {
@@ -120,7 +259,26 @@ body {
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
 }
+.cake.vanilla .drip {
+  background-color: #3b2a14;
+  box-shadow:
+    inset 0 -2px 4px #2a1e0b,
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
 
+/* Optional enhancement for a glossier look */
+.cake.vanilla .drip::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  width: 60%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  transform: rotate(-10deg);
+  pointer-events: none;
+}
 .candle {
   background-color: #7B020B;
   width: 12px;
@@ -182,5 +340,5 @@ body {
     transform: skewX(5deg);
     box-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 0 0 20px rgba(255, 165, 0, 0.5), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 80px rgba(255, 165, 0, 0.5);
   }
+  
 }
-
