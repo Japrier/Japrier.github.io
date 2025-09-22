@@ -16,8 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function addCandle(left, top) {
     const candle = document.createElement("div");
     candle.className = "candle";
+
+    // Adjust the top position to align the base of the candle with the mouse pointer
+    const candleHeight = 30; // Adjust this value based on the actual height of the candle in CSS
     candle.style.left = left + "px";
-    candle.style.top = top + "px";
+    candle.style.top = top - candleHeight + "px";
 
     const flame = document.createElement("div");
     flame.className = "flame";
@@ -31,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   cake.addEventListener("click", function (event) {
     const rect = cake.getBoundingClientRect();
     const left = event.clientX - rect.left;
-    const top = event.clientY - rect.top-55;
+    const top = event.clientY - rect.top;
     addCandle(left, top);
   });
 
@@ -93,4 +96,3 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCandleCount();
   };
 });
-
