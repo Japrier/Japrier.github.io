@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Candle Blow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: #cfc2db;
+      }
+      .ui-controls {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        display: flex;
+        gap: 8px;
+        z-index: 1000;
+      }
+      .ui-controls button {
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid #272761;
+        background: #fff7f1;
+        color: #383878;
+        cursor: pointer;
+      }
+      .ui-controls button:hover {
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="candle-count-display">
+      candles on cake: <span id="candleCount">0</span>
+    </div>
+    <div class="cake">
+      <div class="plate"></div>
+      <div class="layer layer-bottom"></div>
+      <div class="layer layer-middle"></div>
+      <div class="layer layer-top"></div>
+      <div class="icing"></div>
+      <div class="drip drip1"></div>
+      <div class="drip drip2"></div>
+      <div class="drip drip3"></div>
+    </div>
+    <div class="ui-controls">
+      <button id="shareBtn">share cake</button>
+      <button id="resetLinkBtn">reset candles</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+    (function () {
+      const cake = document.querySelector('.cake');
+      const candlePts = [];
+      let restoring = false;
+
+      function encode(pts, box) {
+        const rect = box.getBoundingClientRect();
+        return '#c=' + pts.map(([x, y]) => {
+          const xp = Math.max(0, Math.min(1, x / rect.width));
+          const yp = Math.max(0, Math.min(1, y / rect.height));
+          return xp.toFixed(4) + '_' + yp.toFixed(4);
+        }).join('-');
+      }
+      function decode(hash, box) {
+        const m = hash.match(/#c=([0-9._\-]+)/);
+        if (!m) return [];
+        const rect = box.getBoundingClientRect();
+        return m[1].split('-').map(p => {
+          const [xp, yp] = p.split('_').map(Number);
+          return [xp * rect.width, yp * rect.height];
+        });
+      }
+
+      function recordClick(e) {
+        if (restoring || !cake) return;
+        const rect = cake.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        if (x >= 0 && y >= 0 && x <= rect.width && y <= rect.height) {
+          candlePts.push([x, y]);
+        }
+      }
+      cake?.addEventListener('click', recordClick, true);
+
+      function updateShareLink() {
+        if (!cake) return;
+        const urlWithHash = location.pathname + encode(candlePts, cake);
+        history.replaceState(null, '', urlWithHash);
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(location.href).catch(() => {});
+        }
+        alert('Share link ready! (Copied to clipboard if allowed)');
+      }
+      document.getElementById('shareBtn')?.addEventListener('click', updateShareLink);
+
+      document.getElementById('resetLinkBtn')?.addEventListener('click', () => {
+        if (typeof window.resetCandles === 'function') {
+          window.resetCandles();        
+        } else {
+          document.querySelectorAll('.candle, .flame, .spark').forEach(el => el.remove());
+          const counter = document.getElementById('candleCount');
+          if (counter) counter.textContent = '0';
+        }
+        candlePts.length = 0;
+        history.replaceState(null, '', location.pathname);
+      });
+
+      function spawnAt(x, y) {
+        if (typeof window.addCandleAt === 'function') return window.addCandleAt(x, y);
+        const rect = cake.getBoundingClientRect();
+        const evt = new MouseEvent('click', {
+          clientX: rect.left + x,
+          clientY: rect.top + y,
+          bubbles: true
+        });
+        cake.dispatchEvent(evt);
+      }
+
+      window.addEventListener('load', () => {
+        if (!cake) return;
+        const pts = decode(location.hash, cake);
+        if (!pts.length) return;
+        restoring = true;
+        requestAnimationFrame(() => {
+          pts.forEach(([x, y]) => spawnAt(x, y));
+          restoring = false;
+        });
+      });
+    })();
+    </script>
+  </body>
+</html>
