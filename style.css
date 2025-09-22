@@ -4,11 +4,12 @@ body {
 
 .message-container {
   position: absolute;
-  top: 0;
+  top: 90vh;      /* Move container down to 90% viewport height */
   left: 0;
   width: 100%;
   text-align: center;
-  pointer-events: none; /* Allows clicks through except on children */
+  pointer-events: none; /* Allow clicks through except on children */
+  transform: translateY(-50%); /* Center vertically relative to 90vh */
 }
 
 #customMessageInput {
@@ -20,7 +21,7 @@ body {
   width: 60%;
   max-width: 400px;
   pointer-events: auto; /* Enable input */
-  margin-top: 90vh;     /* Push input to 95% from top */
+  margin-top: 0;        /* Remove previous top margin */
 }
 
 #setMessageBtn {
@@ -38,7 +39,6 @@ body {
 #setMessageBtn:hover {
   background-color: #fff;
 }
-
 #customMessageDisplay {
   position: absolute;
   top: 25vh; /* Display message at 25% of screen height */
@@ -342,5 +342,6 @@ body {
   }
   
 }
+
 
 
