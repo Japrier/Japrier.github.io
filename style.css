@@ -20,7 +20,7 @@ body {
   width: 60%;
   max-width: 400px;
   pointer-events: auto; /* Enable input */
-  margin-top: 95vh;     /* Push input to 95% from top */
+  margin-top: 90vh;     /* Push input to 95% from top */
 }
 
 #setMessageBtn {
@@ -342,4 +342,5 @@ body {
   }
   
 }
+
 
