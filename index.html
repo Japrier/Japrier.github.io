@@ -120,7 +120,7 @@
         const rect = cake.getBoundingClientRect();
         const evt = new MouseEvent('click', {
           clientX: rect.left + x,
-          clientY: rect.top + y+40,
+          clientY: rect.top + y,
           bubbles: true
         });
         cake.dispatchEvent(evt);
@@ -140,4 +140,5 @@
     </script>
   </body>
 </html>
+
 
