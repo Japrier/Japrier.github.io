@@ -144,19 +144,11 @@
         });
         cake.dispatchEvent(evt);
       }
-
-      window.addEventListener('load', () => {
-        if (!cake) return;
-        const pts = decode(location.hash, cake);
-        if (!pts.length) return;
-        restoring = true;
-        requestAnimationFrame(() => {
-          pts.forEach(([x, y]) => spawnAt(x, y));
-          restoring = false;
-        });
+      
       });
     })();
     </script>
   </body>
 </html>
+
 
