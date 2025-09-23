@@ -51,6 +51,7 @@ body {
   pointer-events: none;
 }
 
+
 #flavorSelect {
   
   appearance: none;
@@ -81,6 +82,35 @@ body {
   background-position: right 10px center;
   background-size: 12px;
   padding-right: 30px;
+}
+
+#candleColorSelect {
+  appearance: none;
+  background-color: #fff7f1;   /* same as flavor select */
+  color: #4b2354;
+  border: 2px solid #4b2354;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  /* Add the custom arrow */
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234b2354' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 30px;
+}
+
+/* Optional hover/focus to match flavor select */
+#candleColorSelect:hover,
+#candleColorSelect:focus {
+  background-color: #f1d8ff;
+  border-color: #ba7cf4;
 }
 
 .candle-count-display {
@@ -280,8 +310,69 @@ body {
   transform: rotate(-10deg);
   pointer-events: none;
 }
+
+/* Top controls container */
+.top-controls {
+  position: fixed;
+  top: 16px;
+  right: 64px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 900;
+}
+
+/* Buttons */
+.top-controls button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #272761;
+  background: #fff7f1;
+  color: #383878;
+  cursor: pointer;
+}
+.top-controls button:hover {
+  background: #fff;
+}
+
+/* Hamburger */
+.hamburger {
+  width: 32px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hamburger span {
+  height: 4px;
+  width: 100%;
+  background: #272761;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Sidebar (more hidden) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -280px; /* fully off-screen */
+  width: 260px;
+  height: 100%;
+  background: #fff7f1;
+  box-shadow: -4px 0 10px rgba(0,0,0,0.25);
+  padding: 20px;
+  overflow-y: auto;           /* <- allow vertical scrolling if content is tall */
+  box-sizing: border-box;     /* <- include padding in width calculation */
+  transition: right 0.4s ease;
+  z-index: 1200;
+}
+.sidebar.open {
+  right: 0;
+}
+
 .candle {
-  background-color: #7B020B;
+  background-color: var(--candle-body, red); /* Use a single solid color */
   width: 12px;
   height: 35px;
   border-radius: 6px/3px;
@@ -289,7 +380,9 @@ body {
   left: 50%;
   margin-left: -8px;
   z-index: 10;
+  position: absolute;
 }
+
 .candle:before {
   content: "";
   position: absolute;
@@ -298,7 +391,7 @@ body {
   width: 12px;
   height: 6px;
   border-radius: 50%;
-  background-color: #ad030f;
+  background-color: var(--candle-top, red);
 }
 
 .candle.out .flame {
@@ -343,7 +436,3 @@ body {
   }
   
 }
-
-
-
-
