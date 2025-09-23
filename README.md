@@ -18,11 +18,14 @@ The cake design was adapted from Fazlur Rahman's creation on CodePen ([View Orig
 - **Sharing Over the Web**: Share your cake creation with friends and loved ones 🎁.
 - **Microphone Integration**: Blow into your mic to extinguish candles 🎤.
 - **Candle Count**: Watch the candle count change dynamically 🔢.
+- **Cake flavor**: choose between chocolate and vanilla cake 🍫.
+- **Candle Color**: Choose between 6 different colors (Red, Orange, Yellow, Green, Blue, and Purple) 🌈.
+- **Custom Message**: Add a custom message to be displayed above the cake 📝.
 - **Engaging UI**: Engage with a user-friendly interface.
 
 ## Accessing the Project
 
-To experience the Interactive Birthday Cake, visit the GitHub Pages link: [Interactive Birthday Cake](https://mahnoorsheikh16.github.io/cake-blow/)
+To experience the Interactive Birthday Cake, visit the GitHub Pages link: [Interactive Birthday Cake](https://japrier.github.io/cake/)
 
 ## How to Use
 
@@ -41,3 +44,4 @@ To experience the Interactive Birthday Cake, visit the GitHub Pages link: [Inter
 ## License
 
 This project is released under the [MIT License](LICENSE). This means it can be used, modified, and distributed freely, as long as it is not used for commercial purposes.
+
